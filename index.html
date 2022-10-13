@@ -1,0 +1,56 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Encuesta Dojo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style_encuesta.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <div>
+                {% with messages = get_flashed_messages() %}     <!-- declara una variable llamada mensajes-->
+                    {% if messages %}                            <!-- comprobar si hay algún mensaje -->
+                        {% for message in messages %}            <!-- recorrer los mensajes -->
+                            <p>{{message}}</p>                   <!-- muestra cada mensaje en una etiqueta de párrafo -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <form action="/process" method="post">
+                    <legend class="titulo">Encuesta Dojo</legend>
+                    <div class="mb-1">
+                        <label for="exampleInputEmail1" class="form-label">Nombre:</label>
+                        <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" aria-desc>
+                    </div>
+                    <div class="mb1">
+                        <label for="exampleInputEmail1" class="forma-label mt-1">Dojo Location:</label>
+                        <select name="ubicacion" class="form-select mt-2" aria-label="Default select example">
+                            <option selected value="">Selecciona una ciudad</option>
+                            <option value="Chile">Chile</option>
+                            <option value="Ecuador">Ecuador</option>
+                            <option value="Colombia">Colombia</option>
+                        </select>
+                    </div>
+                    <div class="mb2">
+                        <label for="exampleInputEmail1" class="forma-label mt-1">Lenguaje Favorito:</label>
+                        <select name="lenguaje" class="form-select mt-2" aria-label="Default select example">
+                            <option selected value="">Selecciona un lenguaje</option>
+                            <option value="HTML">HTML</option>
+                            <option value="CSS">CSS</option>
+                            <option value="JAVA">JAVA</option>
+                        </select>
+                    </div>
+                    <div class="y-3">
+                        <label for="exampleFormControl1Textarea1" class="form-label"> Comentarios (optional)</label>
+                        <textarea name="comentarios" class="form-control" id="exampleFormControl1Textarea1" rows="3"></textarea>
+                    </div>
+                    <div class="d-grid gap-2 col-6 mx-auto mt-5">
+                        <button type="submit" class="btn btn-primary btn-lg" value="Enviar">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    </body>
+</html>
